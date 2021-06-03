@@ -2,3 +2,5 @@ config.py
 *.pyc
 venv/
 .cache
+__pycache__/
+testlyrics.py

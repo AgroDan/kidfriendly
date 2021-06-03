@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import lyricsgenius
 import config
 
-naughty_words = ["shit", "piss", "fuck", "cunt", "cock", "tits", "nigg", "fag", "bitch", "asshole", "goddamn"]
+naughty_words = config.naughty_words
 
 lg_token = config.lg_token
 genius = lyricsgenius.Genius(lg_token)
