@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import lyricsgenius
 import config
 
-naughty_words = ["shit", "piss", "fuck", "cunt", "cock", "motherfucker", "tits"]
+naughty_words = ["shit", "piss", "fuck", "cunt", "cock", "tits", "nigg", "fag", "bitch", "asshole", "goddamn"]
 
 lg_token = config.lg_token
 genius = lyricsgenius.Genius(lg_token)
@@ -41,8 +41,15 @@ for song in my_tracks:
     this_song = genius.search_song(title=song['title'], artist=song['artist'])
     for n in naughty_words:
         try:
+            if len(this_song.lyrics) > 10000:
+                print(f"\tHuge output! Didn't find actual lyrics, check manually!")
+                break
             if n in this_song.lyrics.lower():
                 print(f"\tFound cuss words in {song['title']} by {song['artist']}!")
+                print(f"\tFound word: {n}")
+                continue
         except AttributeError:
             print(f"\tCould not open lyrics! Check manually for {song['title']} by {song['artist']}")
-            
+            break
+        except:
+            print(f"\tLOST CONNECTION! Try again later? Skipping...")
