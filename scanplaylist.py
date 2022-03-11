@@ -11,6 +11,11 @@ lg_token = config.lg_token
 genius = lyricsgenius.Genius(lg_token)
 genius.verbose = False
 
+# Below added courtesy of Josh Rodgers (joshrodgers.com)
+# Fixes intermittent timeout errors on laggy connections to Lyrics Genius
+# Original timeout is 5 seconds.
+genius.timeout = 100
+
 client_id = config.client_id
 client_secret = config.client_secret
 playlist_id = config.playlist_id
